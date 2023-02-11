@@ -1033,7 +1033,7 @@ def convert_rating_metrics(df, rank=20):
 def get_coverage_report(df, ranks, item_ids):
   coverage_report = pd.DataFrame(columns=['model', 'rank', 'item_coverage'])
   for rank in ranks:
-    for i, model in enumerate(df['model'].unique()):
+    for i, model in enumerate(df[['model']].unique()):
       df_metrics = convert_coverage_metrics(
           df.query('model == @model'),
           rank=rank
