@@ -918,7 +918,7 @@ def master_m(df_items,filepath):
     #filepath=os.chdir(filepath)
     search_word = 'valid'
     final_files = []
-    for file in glob.glob('*.parquet', recursive=True):
+    for file in glob.glob(f'{filepath}*.parquet', recursive=True):
       try:
         if search_word in file:
             final_files.append(file)
