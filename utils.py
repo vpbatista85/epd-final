@@ -924,6 +924,7 @@ def master_m(df_items,filepath):
             final_files.append(file)
       except:
         print('Exception while reading file')
+    st.write(final_files)
     df_metrics=pd.DataFrame()
     for i in  final_files:
       dff = pd.read_parquet(os.getcwd()+'/'+i)
