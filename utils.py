@@ -929,6 +929,8 @@ def master_m(df_items,filepath):
       dff = pd.read_parquet(os.getcwd()+'/'+i)
       df_metrics=pd.concat([df_metrics,dff])
     
+    st.dataframe(df_metrics)###test
+
     RANKS = list(range(1, 21))
 
     item_ids = df_items.produto_f.unique().tolist()
