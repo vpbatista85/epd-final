@@ -915,7 +915,7 @@ def calc_m(df_f):
     return
 
 def master_m(df_items,filepath):
-    filepath=os.chdir(filepath)
+    #filepath=os.chdir(filepath)
     search_word = 'valid'
     final_files = []
     for file in glob.glob('*.parquet', recursive=True):
