@@ -72,8 +72,6 @@ if 'l_prod' not in st.session_state:
 #         "script_path": script_path_str,
 #     }
 #     _on_pages_changed.send()
-
-#store=st.session_state.store
 #user=st.session_state.user
 #df=st.session_state.df
 #st.write(store)

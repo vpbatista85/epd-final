@@ -87,7 +87,7 @@ if  'df_loja_af' not in st.session_state:
 utils.r_np(df_loja_rec,st.session_state.l_prod,n=5,h=st.session_state.clock)
 utils.r_p(df_loja_rec,st.session_state.l_prod,st.session_state.user,n=5,h=st.session_state.clock)
 
-coverage_report, ranking_report, classification_report, rating_report= utils.master_m(df_loja_rec,'https://github.com/vpbatista85/epd-final/tree/test/')
+coverage_report, ranking_report, classification_report, rating_report= utils.master_m(df_loja_rec,'https://github.com/vpbatista85/epd-final/tree/test/',st.session_state.store)
 
 if 'coverage_report'not in st.session_state:
     st.session_state.coverage_report=coverage_report

@@ -914,7 +914,7 @@ def calc_m(df_f):
 
     return
 
-def master_m(df_items,filepath):
+def master_m(df_items,filepath,loja):
     #filepath=os.chdir(filepath)
     # search_word = 'valid'
     # final_files = []
@@ -936,7 +936,6 @@ def master_m(df_items,filepath):
     g = Github(github_token)
     repo = g.get_repo("vpbatista85/epd-final")
     contents = repo.get_contents("", ref='test')
-    loja="1ae58877-1bac-4e3e-9610-bc3c21b6d205"
     df_metrics=pd.DataFrame()
     for i,values in enumerate(contents):
         if contents[i].type == "dir":
