@@ -601,7 +601,7 @@ def rp_fsvd(df:pd.DataFrame,df_f:pd.DataFrame,l_prod:list,user_id,n:int):
 
         #item_ids = df_valid_set['i_id'].unique()
         item_ids = df_svd['i_id'].unique()
-    except (ValueError) as e:
+    except (ValueError, ZeroDivisionError) as e:
         df_svd=df_f.copy()
         df_svd=df_f.reset_index()
         df_svd.reset_index()
