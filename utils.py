@@ -949,7 +949,7 @@ def master_m(df_items,filepath,loja):
 
     RANKS = list(range(1, 21))
 
-    item_ids = df_items.produto_f.unique()
+    item_ids = df_items.produto_f.unique().tolist()
     st.write(item_ids)
     coverage_report = get_coverage_report(df_metrics, RANKS, item_ids)
     ranking_report = get_ranking_report(df_metrics, RANKS)
@@ -1060,7 +1060,7 @@ def get_coverage_report(df, ranks, item_ids):
       )
       user_ids = df_metrics['user_id'].unique().tolist()
       user_items = df_metrics[['user_id', 'item_id']].values.tolist()
-      st.write(user_items)
+      st.dataframe(user_items)
       coverage = item_coverage((user_ids, item_ids), user_items)
 
       coverage_report.loc[coverage_report.shape[0]] = [model, rank, coverage]
