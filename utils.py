@@ -933,7 +933,7 @@ def master_m(df_items,filepath,loja):
     ##################################
     from github import Github
     # using an access token
-    g = Github(github_token)
+    g = Github(st.secrets["github_token"])
     repo = g.get_repo("vpbatista85/epd-final")
     contents = repo.get_contents("", ref='test')
     df_metrics=pd.DataFrame()
