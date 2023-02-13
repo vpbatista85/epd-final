@@ -950,6 +950,7 @@ def master_m(df_items,filepath,loja):
     RANKS = list(range(1, 21))
 
     item_ids = df_items.produto_f.unique()
+    st.write(item_ids)
     coverage_report = get_coverage_report(df_metrics, RANKS, item_ids)
     ranking_report = get_ranking_report(df_metrics, RANKS)
     classification_report = get_classification_report(df_metrics, RANKS)
