@@ -1062,9 +1062,10 @@ def get_coverage_report(df, ranks, item_ids):
       user_items = df_metrics[['user_id', 'item_id']].dropna(axis=0,inplace=True)
       user_items=df_metrics[['user_id', 'item_id']].to_numpy().tolist()
       for item in user_items:
+          st.write(item)
           if len(item)==0:
               del user_items[item]
-      st.write(user_items)
+      #st.write(user_items)
       #st.dataframe(user_items)
       coverage = item_coverage((user_ids, item_ids), user_items)
 
