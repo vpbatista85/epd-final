@@ -945,11 +945,11 @@ def master_m(df_items,filepath,loja):
             df_metrics=pd.concat([df_metrics,dff])
     
     
-    st.dataframe(df_metrics)###test
+    #st.dataframe(df_metrics)###test
 
     RANKS = list(range(1, 21))
 
-    item_ids = df_items.produto_f.unique().tolist()
+    item_ids = df_items.produto_f.unique()
     coverage_report = get_coverage_report(df_metrics, RANKS, item_ids)
     ranking_report = get_ranking_report(df_metrics, RANKS)
     classification_report = get_classification_report(df_metrics, RANKS)
@@ -1051,7 +1051,7 @@ def convert_rating_metrics(df, rank=20):
 def get_coverage_report(df, ranks, item_ids):
   coverage_report = pd.DataFrame(columns=['model', 'rank', 'item_coverage'])
   for rank in ranks:
-    for model in df.model.unique():
+   for i, model in enumerate(df['model'].unique()):
       print(model)
       df_metrics = convert_coverage_metrics(
           df.query('model == @model'),
