@@ -916,20 +916,35 @@ def calc_m(df_f):
 
 def master_m(df_items,filepath):
     #filepath=os.chdir(filepath)
-    search_word = 'valid'
-    final_files = []
-    st.write(f'{filepath}*.parquet')
-    for file in glob.glob(f'{filepath}*.parquet', recursive=True):
-      try:
-        if search_word in file:
-            final_files.append(file)
-      except:
-        print('Exception while reading file')
-    st.write(final_files)
+    # search_word = 'valid'
+    # final_files = []
+    # st.write(f'{filepath}*.parquet')
+    # for file in glob.glob(f'{filepath}*.parquet', recursive=True):
+    #   try:
+    #     if search_word in file:
+    #         final_files.append(file)
+    #   except:
+    #     print('Exception while reading file')
+    # st.write(final_files)
+    # df_metrics=pd.DataFrame()
+    # for i in  final_files:
+    #   dff = pd.read_parquet(os.getcwd()+'/'+i)
+    #   df_metrics=pd.concat([df_metrics,dff])
+    ##################################
+    from github import Github
+    # using an access token
+    g = Github("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")
+    repo = g.get_repo("vpbatista85/epd-final")
+    contents = repo.get_contents("", ref='test')
+    loja="1ae58877-1bac-4e3e-9610-bc3c21b6d205"
     df_metrics=pd.DataFrame()
-    for i in  final_files:
-      dff = pd.read_parquet(os.getcwd()+'/'+i)
-      df_metrics=pd.concat([df_metrics,dff])
+    for i,values in enumerate(contents):
+        if contents[i].type == "dir":
+            contents.extend(repo.get_contents(contents[i].path,ref='test'))
+        if str(values).__contains__('valid') & str(values).__contains__(loja):
+            dff = pd.read_parquet(values.download_url)
+            df_metrics=pd.concat([df_metrics,dff])
+    
     
     st.dataframe(df_metrics)###test
 
