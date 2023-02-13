@@ -933,7 +933,7 @@ def master_m(df_items,filepath):
     ##################################
     from github import Github
     # using an access token
-    g = Github("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")
+    g = Github(github_token)
     repo = g.get_repo("vpbatista85/epd-final")
     contents = repo.get_contents("", ref='test')
     loja="1ae58877-1bac-4e3e-9610-bc3c21b6d205"
