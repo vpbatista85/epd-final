@@ -1053,14 +1053,16 @@ def get_coverage_report(df, ranks, item_ids):
   coverage_report = pd.DataFrame(columns=['model', 'rank', 'item_coverage'])
   for rank in ranks:
    for i, model in enumerate(df['model'].unique()):
+      st.write('model', model)
       df_metrics = convert_coverage_metrics(
           df.query('model == @model'),
           rank=rank
       )
+      st.dataframe(df_metrics)
       user_ids = df_metrics['user_id'].unique().tolist()
       user_items=df_metrics[['user_id', 'item_id']].values.tolist()
 
-      st.write('model', model)
+      
       st.write('user_ids',user_ids)
       st.write('item_ids',item_ids)
       coverage = item_coverage((user_ids, item_ids), user_items)
