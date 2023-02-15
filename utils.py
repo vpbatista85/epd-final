@@ -1071,7 +1071,6 @@ def get_ranking_report(df, ranks):
   ranking_report = pd.DataFrame(columns=['model', 'rank', 'mrr', 'personalization'])
   for rank in ranks:
     for i, model in enumerate(df['model'].unique()):
-      st.write('model',model)
       df_metrics = convert_ranking_metrics(
           df.query('model == @model'),
           rank=rank
