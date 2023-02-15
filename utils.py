@@ -953,10 +953,11 @@ def master_m(df_items,filepath,loja):
     #st.write(item_ids)
     coverage_report = get_coverage_report(df_metrics, RANKS, item_ids)
     ranking_report = get_ranking_report(df_metrics, RANKS)
+    personalization_report=get_personalization_report(df_metrics, RANKS)
     classification_report = get_classification_report(df_metrics, RANKS)
     rating_report = get_rating_report(df_metrics, RANKS)
 
-    return coverage_report, ranking_report, classification_report, rating_report
+    return coverage_report, ranking_report, personalization_report, classification_report, rating_report
 
 def convert_coverage_metrics(df, rank=20):
   """recommended items"""
@@ -1068,7 +1069,7 @@ def get_coverage_report(df, ranks, item_ids):
   return coverage_report.sort_values(by=['model', 'rank']).reset_index(drop=True)
 
 def get_ranking_report(df, ranks):
-  ranking_report = pd.DataFrame(columns=['model', 'rank', 'mrr', 'personalization'])
+  ranking_report = pd.DataFrame(columns=['model', 'rank', 'mrr'])
   for rank in ranks:
     for i, model in enumerate(df['model'].unique()):
       df_metrics = convert_ranking_metrics(
@@ -1087,7 +1088,7 @@ def get_ranking_report(df, ranks):
   return ranking_report.sort_values(by=['model', 'rank']).reset_index(drop=True)
 
 def get_personalization_report(df, ranks):
-  personalization_report = pd.DataFrame(columns=['model', 'rank', 'mrr', 'personalization'])
+  personalization_report = pd.DataFrame(columns=['model', 'rank', 'personalization'])
   for rank in ranks:
     for i, model in enumerate(df['model'].unique()):
       df_metrics = convert_ranking_metrics(
