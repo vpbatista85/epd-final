@@ -40,7 +40,7 @@ from lightfm.evaluation import auc_score as auc_score_lfm
 
 from rexmex.metrics.coverage import item_coverage
 from rexmex.metrics.ranking import mean_reciprocal_rank, personalization
-from rexmex.metrics.classification import precision_score, recall_score, f1
+from rexmex.metrics.classification import precision_score, recall_score, f1_score
 from rexmex.metrics.rating import root_mean_squared_error, mean_absolute_error
 
 from pathlib import Path
@@ -1112,11 +1112,11 @@ def get_classification_report(df, ranks):
           rank=rank
       )
 
-      f1_score =f1(df_metrics['y_true'], df_metrics['y_score'] >= 0.5)
+      f1=f1_score(df_metrics['y_true'], df_metrics['y_score'] >= 0.5)
       precision = precision_score(df_metrics['y_true'], df_metrics['y_score'] >= 0.5)
       recall = recall_score(df_metrics['y_true'], df_metrics['y_score'] >= 0.5)
 
-      classification_report.loc[classification_report.shape[0]] = [model, rank, f1_score, precision, recall]
+      classification_report.loc[classification_report.shape[0]] = [model, rank, f1, precision, recall]
 
   return classification_report.sort_values(by=['model', 'rank']).reset_index(drop=True)
 
