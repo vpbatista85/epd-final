@@ -1080,10 +1080,25 @@ def get_ranking_report(df, ranks):
           lambda x: mean_reciprocal_rank(x["y_true"], x["y_score"]) if len(x['y_true']) > 0 and len(x['y_score']) else 0,
           axis=1
       ).mean()
-      pers = personalization(df_metrics['y_score'])
-      ranking_report.loc[ranking_report.shape[0]] = [model, rank, mrr, pers]
+      #pers = personalization(df_metrics['y_score'])
+      #ranking_report.loc[ranking_report.shape[0]] = [model, rank, mrr, pers]
+      ranking_report.loc[ranking_report.shape[0]] = [model, rank, mrr]
 
   return ranking_report.sort_values(by=['model', 'rank']).reset_index(drop=True)
+
+def get_personalization_report(df, ranks):
+  personalization_report = pd.DataFrame(columns=['model', 'rank', 'mrr', 'personalization'])
+  for rank in ranks:
+    for i, model in enumerate(df['model'].unique()):
+      df_metrics = convert_ranking_metrics(
+          df.query('model == @model'),
+          rank=rank
+      )
+
+      pers = personalization(df_metrics['y_score'])
+      personalization_report.loc[personalization_report.shape[0]] = [model, rank, pers]
+
+  return personalization_report.sort_values(by=['model', 'rank']).reset_index(drop=True)
 
 def get_classification_report(df, ranks):
   """Classification report for each rank and model"""
