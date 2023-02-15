@@ -6,7 +6,7 @@ import utils
 
 
 st.title('Métricas de Acurácia')
-tab1, tab2, tab3, tab4= st.tabs(["Classificação","Personalização e Ranqueamento","Feedback"])
+tab1, tab2, tab3 = st.tabs(["Classificação","Personalização e Ranqueamento","Feedback"])
 
 with tab1:
     utils.plot_report(st.session_state.classification_report, figsize=(16,10))
