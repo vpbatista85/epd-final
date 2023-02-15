@@ -29,8 +29,8 @@ st.title('Métricas de Acurácia')
 tab4, tab5= st.tabs(["Classificação","Feedback"])
 
 with tab4:
-    utils.plot_report(st.session_state.classification_report, figsize=(26,10))
+    utils.plot_report(st.session_state.classification_report, model_s, figsize=(26,10))
 
 with tab5:
-    utils.plot_report(st.session_state.rating_report, figsize=(16,10))
+    utils.plot_report(st.session_state.rating_report, model_s, figsize=(16,10))
 
