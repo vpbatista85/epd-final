@@ -9,7 +9,7 @@ if 'model_s' not in st.session_state:
 
 with st.sidebar:
 
-    n=st.slider('Selecione o número de itens a ser exibido',min_value=1,max_value=20,value=st.session_state.n,step=1,disabled=False)
+    n=st.slider('Selecione o número de itens a ser exibido',min_value=1,max_value=20,value=10,step=1,disabled=False)
     st.write('Comparar os modelos:')
     if st.checkbox('Top N', value=True, disabled=False):
         model_s.append('top')
