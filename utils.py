@@ -22,7 +22,7 @@ import traceback
 import glob
 
 #matplotlib.rcParams['axes.prop_cycle'] = cycler(color=['#007efd', '#FFC000', '#303030'])
-matplotlib.rcParams['axes.prop_cycle'] = cycler(color='bgrcmyk', linestyle=['-', '--', '-.'])
+matplotlib.rcParams['axes.prop_cycle'] = cycler(color='bgrcmyk')
 
 from funk_svd import SVD
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
