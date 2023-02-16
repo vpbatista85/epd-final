@@ -13,6 +13,8 @@ with st.sidebar:
         model_s.append('itemknn')
     if st.checkbox('Funk-SVD', value=True, disabled=False):
         model_s.append('svd')
+    if st.checkbox('LightFM', value=True, disabled=False):
+        model_s.append('lightfm')       
 
 
 st.title('Métricas de Negócio')
