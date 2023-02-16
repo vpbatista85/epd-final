@@ -1062,6 +1062,10 @@ def get_coverage_report(df, ranks, item_ids):
       user_ids = df_metrics['user_id'].unique().tolist()
       user_items=df_metrics[['user_id', 'item_id']].values.tolist()
 
+      st.write('modelo',model)
+      st.write('user_ids',user_ids)
+      st.write('item_ids',item_ids)
+
       coverage = item_coverage((user_ids, item_ids), user_items)
 
       coverage_report.loc[coverage_report.shape[0]] = [model, rank, coverage]
