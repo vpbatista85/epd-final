@@ -1,14 +1,16 @@
 import streamlit as st
 import utils
 
-
-model_s=[]
+if 'model_s' not in st.session_state:
+    model_s=[]
 
 with st.sidebar:
 
     st.write('Comparar os modelos:')
     if st.checkbox('Top N', value=True, disabled=False):
         model_s.append('top')
+    if st.checkbox('Co-visitation', value=True, disabled=False):
+        model_s.append('covisitation')
     if st.checkbox('Item KNN', value=True, disabled=False):
         model_s.append('itemknn')
     if st.checkbox('Funk-SVD', value=True, disabled=False):
