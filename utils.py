@@ -1147,8 +1147,9 @@ def get_rating_report(df, ranks):
   return rating_report.sort_values(by=['model', 'rank']).reset_index(drop=True)
 
 
-def plot_report(report, model_s, figsize=(16,10)):
+def plot_report(report, model_s, n=20, figsize=(16,10)):
   report=report[report['model'].isin(model_s)].copy()
+  report=report[report['rank']<=n]
   metrics = report.drop(['model', 'rank'], axis=1).columns
   fig, axes = plt.subplots(nrows=len(metrics), ncols=1, sharex=True, figsize=figsize)
   axes = [axes] if len(metrics) == 1 else axes
