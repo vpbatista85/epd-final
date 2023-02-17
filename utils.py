@@ -1399,8 +1399,10 @@ def tmv(df):
     # dfm['TMv']=(dfm.vlrprodutototal/dfm.qtdproduto).round(2)
     # # pd.options.display.float_format = '{:,.2f}'.format
     # # dfm
-    df['mes']=df.dth_agendamento.dt.month
-    dfmm=df.groupby(['loja_compra','mes'])['vlrprodutototal','qtdproduto'].agg('sum').reset_index()
+    dft=df.copy()
+    dft['dth_agendamento'] = pd.to_datetime(dft['dth_agendamento'] , format='%Y-%m-%d %H:%M:%S.%f')
+    dft['mes']=dft.dth_agendamento.dt.month
+    dfmm=dft.groupby(['loja_compra','mes'])['vlrprodutototal','qtdproduto'].agg('sum').reset_index()
     dfmm['TMv']=dfmm.vlrprodutototal/dfmm.qtdproduto
     # #Ticket Médio mensal por loja
     # pd.options.display.float_format = '{:,.2f}'.format
