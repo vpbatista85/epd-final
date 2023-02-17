@@ -26,7 +26,7 @@ with st.sidebar:
 
 st.header(f'Loja: {st.session_state.store}')
 
-st.subheader('Métricas de :red[Neg\'{o}cio]')
+st.subheader('Métricas de :red[Negocio]')
 tab1, tab2, tab3 = st.tabs(["Cobertura","Ranqueamento","Personalização"])
 
 with tab1:
@@ -36,7 +36,7 @@ with tab2:
 with tab3:
     utils.plot_report(st.session_state.personalization_report, model_s,n=n , figsize=(16,10))    
 
-st.subheader('Métricas de :red[Acur\'{a}cia]')
+st.subheader('Métricas de :red[Acuracia]')
 tab4, tab5= st.tabs(["Classificação","Feedback"])
 
 with tab4:
