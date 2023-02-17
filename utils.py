@@ -1407,13 +1407,13 @@ def tmv(df):
     # #Ticket Médio mensal por loja
     # pd.options.display.float_format = '{:,.2f}'.format
     # dfmm
-    store=dfmm['loja_compra'].unique()
+    
     sns.set()
     fig, axes = plt.subplots(1, 2, figsize=(18,6))
 
     # plt.suptitle(f'Loja: {i}',fontsize = 20)
 
-    sns.barplot(x=dfmm[dfmm['loja_compra']==store].mes, y=dfmm[dfmm['loja_compra']==store].TMv, color='blue',saturation=0.26, ax=axes[0])
+    sns.barplot(x=dfmm.mes, y=dfmm.TMv, color='blue',saturation=0.26, ax=axes[0])
     plt.sca(axes[0])
     plt.ylabel('Valor (BRL)',fontsize = 16)
     plt.yticks(fontsize = 14)
@@ -1421,7 +1421,7 @@ def tmv(df):
     plt.xlabel('Mês',fontsize = 16)
     plt.title('Ticket Médio Vendas 2022',fontsize = 14)
 
-    sns.barplot(x=dfmm[dfmm['loja_compra']==store].mes, y=dfmm[dfmm['loja_compra']==store].vlrprodutototal, color='blue',saturation=0.26, ax=axes[1])
+    sns.barplot(x=dfmm.mes, y=dfmm.vlrprodutototal, color='blue',saturation=0.26, ax=axes[1])
     plt.sca(axes[1])
     plt.ylabel('Valor (BRL)',fontsize = 16)
     plt.yticks(fontsize = 14)
