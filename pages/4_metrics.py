@@ -24,6 +24,7 @@ with st.sidebar:
     if st.checkbox('LightFM', value=True, disabled=False):
         model_s.append('lightfm')       
 
+st.title('Loja:',st.session_state.store)
 
 st.title('Métricas de Negócio')
 tab1, tab2, tab3 = st.tabs(["Cobertura","Ranqueamento","Personalização"])
