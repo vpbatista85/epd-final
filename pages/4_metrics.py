@@ -27,28 +27,24 @@ with st.sidebar:
 
 st.header(f'Loja: {st.session_state.store}')
 
-col1, col2, = st.columns([1,3])
-with col1:  
-    st.subheader('')  
-    utils.tmv(st.session_state.df)
+st.subheader('Métricas de Negócio')
+tab1, tab2, tab3, tab4 = st.tabs(["Cobertura","Ranqueamento","Personalização","Ticket Médio Mensal"])
 
-with col2:   
-    st.subheader('Métricas de Negócio')
-    tab1, tab2, tab3 = st.tabs(["Cobertura","Ranqueamento","Personalização"])
+with tab1:
+    utils.plot_report(st.session_state.coverage_report, model_s,n=n ,figsize=(16,10))
+with tab2:
+    utils.plot_report(st.session_state.ranking_report, model_s,n=n , figsize=(16,10))
+with tab3:
+    utils.plot_report(st.session_state.personalization_report, model_s,n=n , figsize=(16,10))    
+with tab4:
+    utils.tmv(st.session_state.df)      
 
-    with tab1:
-        utils.plot_report(st.session_state.coverage_report, model_s,n=n ,figsize=(16,10))
-    with tab2:
-        utils.plot_report(st.session_state.ranking_report, model_s,n=n , figsize=(16,10))
-    with tab3:
-        utils.plot_report(st.session_state.personalization_report, model_s,n=n , figsize=(16,10))    
+st.subheader('Métricas de Acurácia')
+tab5, tab6= st.tabs(["Classificação","Feedback"])
 
-    st.subheader('Métricas de Acurácia')
-    tab4, tab5= st.tabs(["Classificação","Feedback"])
+with tab5:
+    utils.plot_report(st.session_state.classification_report, model_s,n=n , figsize=(16,20))
 
-    with tab4:
-        utils.plot_report(st.session_state.classification_report, model_s,n=n , figsize=(16,20))
-
-    with tab5:
-        utils.plot_report(st.session_state.rating_report, model_s,n=n , figsize=(16,10))
+with tab6:
+    utils.plot_report(st.session_state.rating_report, model_s,n=n , figsize=(16,10))
 
