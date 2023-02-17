@@ -1409,7 +1409,7 @@ def tmv(df):
     # dfmm
     
     sns.set()
-    fig, axes = plt.subplots(2, 1, figsize=(10,4))
+    fig, axes = plt.subplots(2, 1, figsize=(8,5))
 
     # plt.suptitle(f'Loja: {i}',fontsize = 20)
 

@@ -28,7 +28,8 @@ with st.sidebar:
 st.header(f'Loja: {st.session_state.store}')
 
 col1, col2, = st.columns([1,3])
-with col1:    
+with col1:  
+    st.subheader('')  
     utils.tmv(st.session_state.df)
 
 with col2:   
