@@ -7,6 +7,7 @@ if 'n' not in st.session_state:
 if 'model_s' not in st.session_state:
     model_s=[]
 
+ 
 with st.sidebar:
 
     n=st.slider('Selecione o número de itens a ser exibido',min_value=1,max_value=20,value=10,step=1,disabled=False)
@@ -22,26 +23,33 @@ with st.sidebar:
     if st.checkbox('Funk-SVD', value=True, disabled=False):
         model_s.append('svd')
     if st.checkbox('LightFM', value=True, disabled=False):
-        model_s.append('lightfm')       
+        model_s.append('lightfm')    
 
-st.header(f'Loja: {st.session_state.store}')
 
-st.subheader('Métricas de :red[Negocio]')
-tab1, tab2, tab3 = st.tabs(["Cobertura","Ranqueamento","Personalização"])
+col1, col2, = st.columns([1,1])
+with col1:    
+    utils.tmv(st.session_state.df)
 
-with tab1:
-    utils.plot_report(st.session_state.coverage_report, model_s,n=n ,figsize=(16,10))
-with tab2:
-    utils.plot_report(st.session_state.ranking_report, model_s,n=n , figsize=(16,10))
-with tab3:
-    utils.plot_report(st.session_state.personalization_report, model_s,n=n , figsize=(16,10))    
+with col2:   
 
-st.subheader('Métricas de :red[Acuracia]')
-tab4, tab5= st.tabs(["Classificação","Feedback"])
+    st.header(f'Loja: {st.session_state.store}')
 
-with tab4:
-    utils.plot_report(st.session_state.classification_report, model_s,n=n , figsize=(16,20))
+    st.subheader('Métricas de :red[Negocio]:')
+    tab1, tab2, tab3 = st.tabs(["Cobertura","Ranqueamento","Personalização"])
 
-with tab5:
-    utils.plot_report(st.session_state.rating_report, model_s,n=n , figsize=(16,10))
+    with tab1:
+        utils.plot_report(st.session_state.coverage_report, model_s,n=n ,figsize=(16,10))
+    with tab2:
+        utils.plot_report(st.session_state.ranking_report, model_s,n=n , figsize=(16,10))
+    with tab3:
+        utils.plot_report(st.session_state.personalization_report, model_s,n=n , figsize=(16,10))    
+
+    st.subheader('Métricas de :red[acuracia]')
+    tab4, tab5= st.tabs(["Classificação","Feedback"])
+
+    with tab4:
+        utils.plot_report(st.session_state.classification_report, model_s,n=n , figsize=(16,20))
+
+    with tab5:
+        utils.plot_report(st.session_state.rating_report, model_s,n=n , figsize=(16,10))
 
