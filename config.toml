@@ -1,0 +1,6 @@
+[theme]
+primaryColor= '#ffcc13' # yellow
+backgroundColor= '#ffdb58' # mostard
+secondaryBackgroundColor= '#111111' #black
+textColor='#acacac' gray
+font='sans serif'
