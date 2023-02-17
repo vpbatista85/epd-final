@@ -9,7 +9,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns
-#import time
+import time
 import lightfm
 from datetime import datetime,  timedelta, date
 from cycler import cycler
@@ -789,8 +789,10 @@ def r_np(df_loja_rec,l_prod,n,h):
         placeholder1 = st.empty() 
     else:
         tab1, tab2, tab3 = st.tabs(["Apriori", "Top N","Content Based"])
-        with tab1:          
+        with tab1:   
+            start = time.time()       
             rec_np=rnp_apr(df_loja_recnp,l_prod,n)
+            end= time.time()
             placeholder1 = st.empty()
             placeholder1.text("Quem comprou estes produtos também comprou:")
             if rec_np.shape[0]>0:
@@ -799,23 +801,31 @@ def r_np(df_loja_rec,l_prod,n,h):
                         st.write("Quem comprou estes produtos também comprou:")
                         for i in rec_np.consequents:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
                     else:
                         st.write("Quem comprou este produto também comprou:")
                         for i in rec_np.consequents:
                             st.write(i)  
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
             else:
                 with placeholder1.container():
                         st.write("Sem proposições para este item")
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
         with tab2:
+            start = time.time()  
             rec_np=rnp_top_n(df_loja_recnp,l_prod=l_prod,n=n)
+            end= time.time()
             placeholder1 = st.empty()
             placeholder1.text("Adicione ao carrinho os produtos mais vendidos:")
             with placeholder1.container():
                     st.write("Adicione ao carrinho os produtos mais vendidos:")
                     for i in rec_np.produto_f:
                         st.write(i)
+                    st.write('Tempo de execução(ms): ',(end-start)*10**3)
         with tab3:
+            start = time.time()
             rec_np=rnp_cb(df_loja_recnp,df_loja_rec1,l_prod,n)
+            end= time.time()
             placeholder1 = st.empty()
             placeholder1.text("Quem comprou estes produtos também comprou:")
             with placeholder1.container():
@@ -823,10 +833,12 @@ def r_np(df_loja_rec,l_prod,n,h):
                         st.write("Quem comprou estes produtos também comprou:")
                         for i in rec_np.produto_f:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
                     else:
                         st.write("Quem comprou este produto também comprou:")
                         for i in rec_np.produto_f:
-                            st.write(i)            
+                            st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)            
     return df_loja_rec.shape[0], df_loja_recnp.shape[0]
 
 def r_p(df_loja_rec,l_prod,user_id,n,h):
@@ -837,8 +849,10 @@ def r_p(df_loja_rec,l_prod,user_id,n,h):
         placeholder2 = st.empty() 
     else:
         tab4, tab5, tab6, tab7 = st.tabs(["Co-visitation", 'Item KNN','Funk-SVD','LightFM'])
-        with tab4:          
+        with tab4:
+            start = time.time()          
             rec_p=rp_cv(df_loja_recnp,df_loja_rec1,l_prod,n)
+            end= time.time()
             placeholder2 = st.empty()
             placeholder2.text("Quem comprou estes produtos também comprou:")
             with placeholder2.container():
@@ -846,12 +860,16 @@ def r_p(df_loja_rec,l_prod,user_id,n,h):
                         st.write("Quem comprou estes produtos também comprou:")
                         for i in rec_p.item_id:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
                     else:
                         st.write("Quem comprou este produto também comprou:")
                         for i in rec_p.item_id:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
         with tab5: 
+            start = time.time()
             rec_p=rp_iknn(df_loja_recnp,df_loja_rec1,l_prod,user_id,n)
+            end= time.time()
             placeholder2 = st.empty()
             placeholder2.text("Quem comprou estes produtos também comprou:")
             with placeholder2.container():
@@ -859,12 +877,16 @@ def r_p(df_loja_rec,l_prod,user_id,n,h):
                         st.write("Quem comprou estes produtos também comprou:")
                         for i in rec_p.index:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
                     else:
                         st.write("Quem comprou este produto também comprou:")
                         for i in rec_p.index:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
         with tab6:
+            start = time.time()
             rec_p=rp_fsvd(df_loja_recnp,df_loja_rec1,l_prod,user_id,n)
+            end= time.time()
             placeholder2 = st.empty()
             placeholder2.text("Quem comprou estes produtos também comprou:")
             with placeholder2.container():
@@ -872,12 +894,16 @@ def r_p(df_loja_rec,l_prod,user_id,n,h):
                         st.write("Quem comprou estes produtos também comprou:")
                         for i in rec_p.index:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
                     else:
                         st.write("Quem comprou este produto também comprou:")
                         for i in rec_p.index:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
         with tab7:
+            start = time.time()
             rec_p=rp_lfm(df_loja_recnp,df_loja_rec1,user_id,n)
+            end= time.time()
             placeholder2 = st.empty()
             placeholder2.text("Quem comprou estes produtos também comprou:")
             with placeholder2.container():
@@ -885,10 +911,12 @@ def r_p(df_loja_rec,l_prod,user_id,n,h):
                         st.write("Quem comprou estes produtos também comprou:")
                         for i in rec_p.index:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
                     else:
                         st.write("Quem comprou este produto também comprou:")
                         for i in rec_p.index:
                             st.write(i)
+                        st.write('Tempo de execução(ms): ',(end-start)*10**3)
 
 ##############  METRICAS #################################
 
