@@ -24,9 +24,9 @@ with st.sidebar:
     if st.checkbox('LightFM', value=True, disabled=False):
         model_s.append('lightfm')       
 
-st.title('Loja:',st.session_state.store)
+st.title(f'Loja: {st.session_state.store}')
 
-st.title('Métricas de Negócio')
+st.header('Métricas de Negócio')
 tab1, tab2, tab3 = st.tabs(["Cobertura","Ranqueamento","Personalização"])
 
 with tab1:
@@ -36,7 +36,7 @@ with tab2:
 with tab3:
     utils.plot_report(st.session_state.personalization_report, model_s,n=n , figsize=(16,10))    
 
-st.title('Métricas de Acurácia')
+st.header('Métricas de Acurácia')
 tab4, tab5= st.tabs(["Classificação","Feedback"])
 
 with tab4:
