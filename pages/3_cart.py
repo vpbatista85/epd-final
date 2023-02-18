@@ -87,7 +87,7 @@ if  'df_loja_af' not in st.session_state:
 utils.r_np(df_loja_rec,st.session_state.l_prod,n=5,h=st.session_state.clock)
 utils.r_p(df_loja_rec,st.session_state.l_prod,st.session_state.user,n=5,h=st.session_state.clock)
 
-coverage_report, ranking_report, personalization_report, classification_report, rating_report= utils.master_m(st.session_state.df_loja_af,'https://github.com/vpbatista85/epd-final/tree/test/',st.session_state.store)
+coverage_report, ranking_report, personalization_report, classification_report, rating_report, df_metrics= utils.master_m(st.session_state.df_loja_af,'https://github.com/vpbatista85/epd-final/tree/test/',st.session_state.store)
 
 if 'coverage_report'not in st.session_state:
     st.session_state.coverage_report=coverage_report
@@ -103,6 +103,8 @@ if 'classification_report'not in st.session_state:
 
 if 'rating_report'not in st.session_state:
     st.session_state.rating_report=rating_report
+if 'df_metrics' not in st.session_state:
+    st.session_state.df_metrics=df_metrics
 
 if st.button('Métricas'):
         utils.add_page('teste_strealit_main.py', 'metrics')

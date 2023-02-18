@@ -986,7 +986,7 @@ def master_m(df_items,filepath,loja):
     classification_report = get_classification_report(df_metrics, RANKS)
     rating_report = get_rating_report(df_metrics, RANKS)
 
-    return coverage_report, ranking_report, personalization_report, classification_report, rating_report
+    return coverage_report, ranking_report, personalization_report, classification_report, rating_report, df_metrics
 
 def convert_coverage_metrics(df, rank=20):
   """recommended items"""

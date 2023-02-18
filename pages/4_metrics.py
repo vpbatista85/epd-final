@@ -49,5 +49,5 @@ with tab6:
     utils.plot_report(st.session_state.rating_report, model_s,n=n , figsize=(16,10))
 
 with tab7:
-    utils.plot_runtime_metrics(st.session_state.df_lrecnp)
+    utils.plot_runtime_metrics(st.session_state.df_metrics)
 
