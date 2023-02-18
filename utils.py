@@ -1201,8 +1201,9 @@ def plot_runtime_metrics(df, figsize=(16,10)):
   df_score = df
   df_score = df_score.explode('y_score')[['model', 'user_id', 'y_score']]
   df_score['item_id'] = df_score['y_score'].apply(lambda x: x.get('item_id'))
-  df_score['y_score'] = df_score['y_score'].apply(lambda x: x.get('score'))
   df_score['run_time'] = df_score['y_score'].apply(lambda x: x.get('run_time'))
+  df_score['y_score'] = df_score['y_score'].apply(lambda x: x.get('score'))
+ 
   
   df_metrics = df_score['model', 'user_id', 'item_id','run_time']
   df_metrics.sort_values(by=['run_time'], ascending=False, inplace=True)
