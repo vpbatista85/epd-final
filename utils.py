@@ -1210,7 +1210,7 @@ def plot_runtime_metrics(df, figsize=(16,10)):
 
   fig=plt.figure(figsize=figsize)
   sns.boxplot(df_metrics,x=df_metrics.model,y=df_metrics.run_time)
-  fig.set_xlabel('model')
+  plt.set_xlabel('model')
 
   return st.pyplot(fig)
 
