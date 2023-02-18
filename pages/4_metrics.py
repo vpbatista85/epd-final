@@ -40,11 +40,14 @@ with tab4:
     utils.tmv(st.session_state.df)      
 
 st.subheader('Métricas de Acurácia')
-tab5, tab6= st.tabs(["Classificação","Feedback"])
+tab5, tab6, tab7= st.tabs(["Classificação","Feedback","Run Time"])
 
 with tab5:
     utils.plot_report(st.session_state.classification_report, model_s,n=n , figsize=(16,20))
 
 with tab6:
     utils.plot_report(st.session_state.rating_report, model_s,n=n , figsize=(16,10))
+
+with tab7:
+    utils.plot_runtime_metrics(st.session_state.df_lrecnp)
 
