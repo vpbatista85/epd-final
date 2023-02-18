@@ -1228,7 +1228,7 @@ def plot_total_runtime_metrics(df, figsize=(16,10)):
 
   fig=plt.figure(figsize=figsize)
   plt.title('Run time/itereation')
-  sns.barplot(df_metrics,x=df_metrics.model,y=df_metrics.run_time.sum)
+  sns.barplot(df_metrics,x=df_metrics.model,y=df_metrics.run_time)
 
   return st.pyplot(fig)
 
