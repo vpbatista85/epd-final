@@ -1205,7 +1205,7 @@ def plot_runtime_metrics(df, figsize=(16,10)):
   df_score['y_score'] = df_score['y_score'].apply(lambda x: x.get('score'))
  
   
-  df_metrics = df_score['model', 'user_id', 'item_id','run_time']
+  df_metrics = df_score[['model', 'user_id', 'item_id','run_time']]
   df_metrics.sort_values(by=['run_time'], ascending=False, inplace=True)
 
   fig=plt.figure(figsize=figsize)
